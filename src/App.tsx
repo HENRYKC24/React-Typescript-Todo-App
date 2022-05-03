@@ -9,12 +9,17 @@ const App: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (todo) setTodos(() => [...todos, {
-      id: Date.now(),
-      todo: todo,
-      isDone: false,
-    } ])
+    if (todo) {
+      setTodos(() => [...todos, {
+        id: Date.now(),
+        todo,
+        isDone: false,
+      } ]);
+      setTodo(() => '');
+    }
   };
+
+  console.log('all todo=>: ', todos);
 
   return (
     <div className="App">
