@@ -44,6 +44,14 @@
   box-shadow: 0 0 5px #000;
 }
 
+.todos_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 90%;
+  flex-wrap: wrap;
+}
+
 .todos {
   display: flex;
   justify-content: space-evenly;
@@ -53,7 +61,8 @@
 
 .todos_single {
   display: flex;
-  width: 29.5%;
+  align-items: center;
+  width: 40%;
   border-radius: 5px;
   padding: 20px;
   margin-top: 15px;
@@ -65,4 +74,17 @@
   padding: 5px;
   border: none;
   font-size: 20px;
+}
+
+.icon {
+  margin-left: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .todos_single {
+    width: 100%;
+  }
+  
 }

@@ -9,7 +9,7 @@ interface Props {
 
 const TodoList = ({ todos, setTodos }: Props) => {
   return (
-    <div>
+    <div className="todos_container">
       {todos.map((todo) => (
         <SingleTodo
           key={`${todo.id}`}
