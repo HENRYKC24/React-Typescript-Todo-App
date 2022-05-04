@@ -76,12 +76,12 @@ const SingleTodo = ({
 
   return (
     <Draggable draggableId={`${id}`} index={index}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <form
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className="todos_single"
+          className={`todos_single ${snapshot.isDragging ? 'drag' : ''}`}
           onSubmit={(e: React.FormEvent) => handleSubmit(e)}
         >
           {isDone && !editMode ? (
