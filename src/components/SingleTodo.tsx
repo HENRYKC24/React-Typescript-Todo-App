@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Todo } from "../model";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-import { MdDone } from "react-icons/md";
+import { MdDone, MdRestore } from "react-icons/md";
 import { Draggable } from "react-beautiful-dnd";
 
 interface Props {
+  type: string;
   index: number;
   todo: Todo;
   todos: Todo[];
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const SingleTodo = ({
+  type,
   index,
   todo,
   todos,
@@ -27,15 +29,23 @@ const SingleTodo = ({
   const [todoEditValue, setTodoEditValue] = useState<string>(todoText);
 
   const handleDone = () => {
-    setTodos(() =>
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, isDone: !isDone } : todo
-      )
-    );
+    if (type === "not-done") {
+      const todoCopy = todos.filter((todo) => todo.id === id)[0];
+      setTodos(() => todos.filter((todo) => todo.id !== id));
+      setCompletedTodos((prev) => [{...todoCopy, isDone: true}, ...prev])
+    } else {
+      const todoCopy = completedTodos.filter((todo) => todo.id === id)[0];
+      setCompletedTodos(() => completedTodos.filter((todo) => todo.id !== id));
+      setTodos((prev) => [{...todoCopy, isDone: false}, ...prev])
+    }
   };
 
   const handleDelete = () => {
-    setTodos(() => todos.filter((todo) => todo.id !== id));
+    if (type === "not-done") {
+      setTodos(() => todos.filter((todo) => todo.id !== id));
+    } else {
+      setCompletedTodos(() => completedTodos.filter((todo) => todo.id !== id));
+    }
   };
 
   const handleEdit = () => setEditMode((prevMode) => !prevMode);
@@ -48,11 +58,20 @@ const SingleTodo = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setEditMode(() => false);
-    setTodos(() =>
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, todo: todoEditValue } : todo
-      )
-    );
+
+    if (type === "not-done") {
+      setTodos(() =>
+        todos.map((todo) =>
+          todo.id === id ? { ...todo, todo: todoEditValue } : todo
+        )
+      );
+    } else {
+      setCompletedTodos(() =>
+        completedTodos.map((todo) =>
+          todo.id === id ? { ...todo, todo: todoEditValue } : todo
+        )
+      );
+    }
   };
 
   return (
@@ -87,9 +106,15 @@ const SingleTodo = ({
             <span className="icon" onClick={() => handleDelete()}>
               <AiFillDelete />
             </span>
-            <span className="icon" onClick={() => handleDone()}>
-              <MdDone />
-            </span>
+            {!isDone ? (
+              <span className="icon" onClick={() => handleDone()}>
+                <MdDone />
+              </span>
+            ) : (
+              <span className="icon" onClick={() => handleDone()}>
+                <MdRestore />
+              </span>
+            )}
           </div>
         </form>
       )}

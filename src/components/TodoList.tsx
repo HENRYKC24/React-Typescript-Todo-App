@@ -28,9 +28,9 @@ const TodoList = ({
             >
               <span className="todo_heading">Active Tasks</span>
               {todos
-                .filter((todo) => !todo.isDone)
                 .map((todo, index) => (
                   <SingleTodo
+                    type="not-done"
                     index={index}
                     key={`${todo.id}`}
                     todo={todo}
@@ -55,10 +55,10 @@ const TodoList = ({
               {...provided.droppableProps}
             >
               <span className="todo_heading">Completed Tasks</span>
-              {todos
-                .filter((todo) => todo.isDone)
+              {completedTodos
                 .map((todo, index) => (
                   <SingleTodo
+                    type="done"
                     index={index}
                     key={`${todo.id}`}
                     todo={todo}
