@@ -26,7 +26,6 @@ const App: React.FC = () => {
   };
 
   const onDropEnd = (result: DropResult) => {
-    console.log("result", result);
     const { destination, source } = result;
     if (
       !destination ||
