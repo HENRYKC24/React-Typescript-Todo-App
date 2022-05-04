@@ -6,6 +6,9 @@ A to-do list with task dragging implementation.
 - Typescript
 - JavaScript
 
+## Screenshot
+![screenshot](https://upww.screenrec.com/images/f_G5rOiuI1jXSUNTWDKbCgmyl9eAFhxk67.png)
+
 ## Live Demo
 
 [Live Demo Link](https://henrykc24.github.io/to-do-list-draggable/dist/)
