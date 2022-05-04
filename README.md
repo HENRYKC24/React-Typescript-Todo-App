@@ -11,7 +11,7 @@ A to-do list with task dragging implementation.
 
 ## Live Demo
 
-[Live Demo Link](https://henrykc24.github.io/to-do-list-draggable/dist/)
+[Live Demo Link](https://henrykc24.github.io/React-Typescript-Todo-App/)
 
 
 ## Getting Started
