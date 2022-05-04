@@ -20,8 +20,6 @@ const App: React.FC = () => {
     }
   };
 
-  console.log('all todo=>: ', todos);
-
   return (
     <div className="App">
       <span className="heading">GERITDON</span>

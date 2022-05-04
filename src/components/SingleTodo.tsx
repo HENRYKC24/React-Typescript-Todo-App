@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Todo } from "../model";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
@@ -10,6 +10,7 @@ interface Props {
 }
 
 const SingleTodo = ({ todo, todos, setTodos }: Props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const { id, isDone, todo: todoText } = todo;
   const [editMode, setEditMode] = useState<boolean>(false);
   const [todoEditValue, setTodoEditValue] = useState<string>(todoText);
@@ -26,7 +27,7 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
     setTodos(() => todos.filter((todo) => todo.id !== id));
   };
 
-  const handleEdit = () => setEditMode(() => true);
+  const handleEdit = () => setEditMode((prevMode) => !prevMode);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -58,6 +59,9 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
             handleInputChange(e)
           }
           value={todoEditValue}
+          className="todos_single-text"
+          ref={inputRef}
+          autoFocus={true}
         />
       )}
       <div>
