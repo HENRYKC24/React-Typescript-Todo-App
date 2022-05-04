@@ -9,15 +9,29 @@ interface Props {
 
 const TodoList = ({ todos, setTodos }: Props) => {
   return (
-    <div className="todos_container">
-      {todos.map((todo) => (
-        <SingleTodo
-          key={`${todo.id}`}
-          todo={todo}
-          todos={todos}
-          setTodos={setTodos}
-        />
-      ))}
+    <div className="parent_container">
+      <div className="todos_container active_tasks">
+        <span className="todo_heading">Active Tasks</span>
+        {todos.filter((todo) => !todo.isDone).map((todo) => (
+          <SingleTodo
+            key={`${todo.id}`}
+            todo={todo}
+            todos={todos}
+            setTodos={setTodos}
+          />
+        ))}
+      </div>
+      <div className="todos_container completed_tasks">
+        <span className="todo_heading">Completed Tasks</span>
+        {todos.filter((todo) => todo.isDone).map((todo) => (
+          <SingleTodo
+            key={`${todo.id}`}
+            todo={todo}
+            todos={todos}
+            setTodos={setTodos}
+          />
+        ))}
+      </div>
     </div>
   );
 };
