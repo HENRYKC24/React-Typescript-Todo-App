@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/React-Typescript-Todo-App/static/css/main.6b4ada37.css",
+    "main.js": "/React-Typescript-Todo-App/static/js/main.d8156f78.js",
+    "index.html": "/React-Typescript-Todo-App/index.html",
+    "main.6b4ada37.css.map": "/React-Typescript-Todo-App/static/css/main.6b4ada37.css.map",
+    "main.d8156f78.js.map": "/React-Typescript-Todo-App/static/js/main.d8156f78.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6b4ada37.css",
+    "static/js/main.d8156f78.js"
+  ]
+}
